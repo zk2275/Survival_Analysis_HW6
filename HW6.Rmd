@@ -1,6 +1,6 @@
 ---
 title: "HW6"
-author: "Zhuodiao Kuang"
+author: "Zhuodiao Kuang zk2275"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
@@ -26,46 +26,88 @@ The interactions can exist in any forms, but I think the simplest method to test
 
 Once the calculation or visualization feels it, we can apply statistical analysis to get statistically significant interactions. However, We may not finally get the exact form of interactions, even we use state-of-art methods.
 
+\newpage
 
 
 # Question 2
 
 ## a) Please estimate the survival time that 90% subjects survived for baseline survival function.
 
+```{r , echo=FALSE, fig.cap="Crude Survival Data", out.width = '80%', fig.align='center'}
+knitr::include_graphics("./P2_a_raw_table.png")
+```
 
+
+```{r p2a-survcurve, echo=FALSE, fig.cap="Survival Fucntion for Baseline Covariates", out.width = '60%', fig.align='center'}
+knitr::include_graphics("./P2_a_picture.png")
+```
+
+```{r , echo=FALSE, fig.cap="Targeted interval for Baseline", out.width = '80%', fig.align='center'}
+knitr::include_graphics("./P2_a_90_obs.png")
+```
+Based on the results above, it is projected that 90% of individuals survived for 3090 days during the baseline survival function.
+
+
+\newpage
 
 
 ## b) Please estimate the survival time that 90% subjects survived for male subjects who had edema and stage=4 and taking median for all other covariates in the model.
 
+```{r , echo=FALSE, fig.cap="Taking Median for All Other Covariates", out.width = '80%', fig.align='center'}
+knitr::include_graphics("./P2_b_median.png")
+```
+
+
+```{r , echo=FALSE, fig.cap="Survival Fucntion for Male Subjects", out.width = '80%', fig.align='center'}
+knitr::include_graphics("./P2_b_picture.png")
+```
+
+
+```{r , echo=FALSE, fig.cap="Targeted interval for Male Subjects", out.width = '80%', fig.align='center'}
+knitr::include_graphics("./P2_b_90_obs.png")
+```
+
+Based on the results, the estimated survival time for male subjects with edema and stage = 4, after adjusting for medians of all other covariates, was 348 days, for 90% of the subjects.
+
+\newpage
 
 # Question 3
 
 **Perform model selection using backward selection using PBC data.**
 
-Step 0. The model contains the following effects:
+* Step 0. The model contains the following effects:
 
 trt sexn ascites hepato spiders edema bili albumin copper alk.phos ast protime stage
 
-Step 1. Effect ascites is removed. The model contains the following effects:
+* Step 1. Effect ascites is removed. The model contains the following effects:
 
 trt sexn hepato spiders edema bili albumin copper alk.phos ast protime stage
 
-Step 2. Effect trt is removed. The model contains the following effects:
+* Step 2. Effect trt is removed. The model contains the following effects:
 
 sexn hepato spiders edema bili albumin copper alk.phos ast protime stage
 
-Step 3. Effect spiders is removed. The model contains the following effects:
+* Step 3. Effect spiders is removed. The model contains the following effects:
 
 sexn hepato edema bili albumin copper alk.phos ast protime stage
 
-Step 4. Effect hepato is removed. The model contains the following effects:
+* Step 4. Effect hepato is removed. The model contains the following effects:
 
 sexn edema bili albumin copper alk.phos ast protime stage
 
-Step 5. Effect alk.phos is removed. The model contains the following effects:
+* Step 5. Effect alk.phos is removed. The model contains the following effects:
 
 sexn edema bili albumin copper ast protime stage
 
+The final result is shown as below:
+
+```{r , echo=FALSE, fig.cap="Backward Result", out.width = '80%', fig.align='center'}
+knitr::include_graphics("./P3_backward.png")
+```
+
+
+
+\newpage
 
 # SAS CODE
 
@@ -169,3 +211,8 @@ run;
 
 # SAS DOCUMENT
 https://support.sas.com/documentation/cdl/en/statug/68162/HTML/default/viewer.htm#statug_glmselect_details07.htm
+
+# Github Link
+
+https://github.com/zk2275/Survival_Analysis_HW6
+
